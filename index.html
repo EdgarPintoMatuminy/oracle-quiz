@@ -2205,24 +2205,14 @@ function nextQuestion(){
 }
 
 // ── 5. PWA (Modo sin conexión) ────────────
-// Añadir meta tags y manifest para PWA
+// Cargar manifest.json externo
 (function setupPWA(){
-  // Añadir manifest inline
-  const manifest={
-    name:'Oracle 1z0-133 Quiz - Edgar Pinto',
-    short_name:'Oracle Quiz',
-    description:'Quiz de preparación para Oracle WebLogic Server 12c Administration I',
-    start_url:'.',
-    display:'standalone',
-    background_color:'#667eea',
-    theme_color:'#667eea',
-    icons:[{src:'https://img.icons8.com/color/96/oracle-logo.png',sizes:'96x96',type:'image/png'}]
-  };
-  const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
+  // Cargar manifest desde archivo
   const link=document.createElement('link');
-  link.rel='manifest';link.href=url;
+  link.rel='manifest';
+  link.href='/oracle-quiz/manifest.json';
   document.head.appendChild(link);
+  
   // Meta theme color
   const meta=document.createElement('meta');
   meta.name='theme-color';meta.content='#667eea';
